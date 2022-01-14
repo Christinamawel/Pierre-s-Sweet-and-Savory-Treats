@@ -61,6 +61,45 @@ namespace Pierres.Controllers
       return RedirectToAction("Index");
     }
 
+    [HttpPost]
+    public ActionResult ShareTreat(int treatId)
+    {
+      var thisTreat = _db.Treats.FirstOrDefault(Treat => Treat.TreatId == treatId);
+      thisTreat.Shared = !thisTreat.Shared;
+      _db.Entry(thisTreat).State = EntityState.Modified;
+      _db.SaveChanges();
+      return RedirectToAction("Details", new {id = thisTreat.TreatId});
+    }
+
+    public ActionResult AddFlavor(int id, string str)
+    {
+      // create error message to show on view with str
+      ViewBag.Same = str;
+      var thisTreat = _db.Treats
+          .Include(Treat => Treat.JoinEntities)
+          .ThenInclude(join => join.Flavor)
+          .FirstOrDefault(Treats => Treats.TreatId == id);
+      ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "Name");
+      return View(thisTreat);
+    }
+
+    [HttpPost]
+    public ActionResult AddFlavor(Treat Treat, int FlavorId)
+    {
+      // check if the flavor has already been added
+      bool alreadyExists = _db.FlavorTreat.Any(FlavorTreat => FlavorTreat.FlavorId == FlavorId && FlavorTreat.TreatId == Treat.TreatId);
+      if (FlavorId != 0 && !alreadyExists)
+      {
+        _db.FlavorTreat.Add(new FlavorTreat() { FlavorId = FlavorId, TreatId = Treat.TreatId });
+      }
+      _db.SaveChanges();
+      if(alreadyExists)
+      {
+        return RedirectToAction("AddFlavor", new { id = Treat.TreatId, str = "This Treat already contains that Flavor" });
+      }
+      return RedirectToAction("Details", new { id = Treat.TreatId});
+    }
+
     public ActionResult Details (int id)
     {
       var thisTreat = _db.Treats.FirstOrDefault(Treat => Treat.TreatId == id);

@@ -13,6 +13,7 @@ namespace Pierres.Models
     public string Name { get; set; }
     public int Rating { get; set; }
     public virtual ApplicationUser User { get; set; }
+    public bool Shared { get; set; }
 
     public virtual ICollection<FlavorTreat> JoinEntities { get; }
   }
