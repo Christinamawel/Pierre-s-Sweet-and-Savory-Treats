@@ -1,0 +1,21 @@
+@using Pierres.Models;
+@model IEnumerable<Pierres.Models.Treat>;
+
+<h2>Treats By @User.Identity.Name</h2>
+<div class="shared">
+  @if(Model.Any())
+  {
+    <ul>
+      @foreach(Treat Treat in Model)
+      {
+        <li>@Html.ActionLink($"{Treat.Name}", "Details", new { id = Treat.TreatId }) | @Treat.Rating⭐</li>
+      }
+    </ul>
+  }
+  else
+  {
+    <h3>No Treats have been added yet!</h3>
+  }
+</div>
+
+<p class="buttonz">@Html.ActionLink("Add a new Treat", "Create")</p>
