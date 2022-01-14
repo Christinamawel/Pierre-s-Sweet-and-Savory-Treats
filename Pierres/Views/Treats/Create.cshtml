@@ -1,0 +1,16 @@
+@model Pierres.Models.Treat
+
+<h4>Add your new treat here!</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(model => model.Name)
+    @Html.TextBoxFor(model => model.Name)
+
+    @Html.LabelFor(model => model.Rating)
+    @Html.TextBoxFor(model => model.Rating,  new { @min="0" , @max="5" , type = "number"})
+
+    <input type="submit" value="Add new Treat" class="btn btn-default" />
+}
+
+<p>@Html.ActionLink("Back to list of treats", "Index")</p>

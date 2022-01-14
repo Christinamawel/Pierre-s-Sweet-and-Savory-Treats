@@ -30,5 +30,21 @@ namespace Pierres.Controllers
       var userTreats = _db.Treats.Where(entry => entry.User.Id == currentUser.Id).ToList();
       return View(userTreats.OrderByDescending(x => x.Rating));
     }
+
+    public async Task<ActionResult> Create()
+    {
+      return View();
+    }
+
+    [HttpPost]
+    public async Task<ActionResult> Create(Treat Treat, int CategoryId)
+    {
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
+      Treat.User = currentUser;
+      _db.Treats.Add(Treat);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
   }
 }
