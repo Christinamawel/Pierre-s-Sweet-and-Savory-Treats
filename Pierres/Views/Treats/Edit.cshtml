@@ -4,13 +4,15 @@
 
 @using (Html.BeginForm())
 {
+    @Html.HiddenFor(model => model.TreatId)
+
     @Html.LabelFor(model => model.Name)
     @Html.TextBoxFor(model => model.Name)
 
     @Html.LabelFor(model => model.Rating)
     @Html.TextBoxFor(model => model.Rating,  new { @min="0" , @max="5" , type = "number"})
 
-    <input type="submit" value="Add new Treat" class="btn btn-default" />
+    <input type="submit" value="Edit Treat" class="btn btn-default" />
 }
 
 <p>@Html.ActionLink("Back to list of treats", "Index")</p>

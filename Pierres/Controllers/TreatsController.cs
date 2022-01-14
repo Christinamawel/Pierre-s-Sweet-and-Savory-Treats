@@ -54,11 +54,17 @@ namespace Pierres.Controllers
     }
 
     [HttpPost]
-    public ActionResult Edit(Treat Treat, int CategoryId)
+    public ActionResult Edit(Treat Treat)
     {
       _db.Entry(Treat).State = EntityState.Modified;
       _db.SaveChanges();
       return RedirectToAction("Index");
+    }
+
+    public ActionResult Details (int id)
+    {
+      var thisTreat = _db.Treats.FirstOrDefault(Treat => Treat.TreatId == id);
+      return View(thisTreat);
     }
   }
 }
