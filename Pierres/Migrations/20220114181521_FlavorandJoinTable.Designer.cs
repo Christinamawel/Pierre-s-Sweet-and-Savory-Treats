@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Pierres.Models;
 
 namespace RecipeBox.Migrations
 {
     [DbContext(typeof(PierresContext))]
-    partial class PierresContextModelSnapshot : ModelSnapshot
+    [Migration("20220114181521_FlavorandJoinTable")]
+    partial class FlavorandJoinTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -6,7 +6,7 @@ namespace Pierres.Models
   {
     public Treat()
     {
-      
+      this.JoinEntities = new HashSet<FlavorTreat>();
     }
 
     public int TreatId { get; set; }
@@ -14,5 +14,6 @@ namespace Pierres.Models
     public int Rating { get; set; }
     public virtual ApplicationUser User { get; set; }
 
+    public virtual ICollection<FlavorTreat> JoinEntities { get; }
   }
 }
