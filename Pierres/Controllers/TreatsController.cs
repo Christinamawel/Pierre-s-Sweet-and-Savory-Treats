@@ -31,7 +31,7 @@ namespace Pierres.Controllers
       return View(userTreats.OrderByDescending(x => x.Rating));
     }
 
-    public async Task<ActionResult> Create()
+    public ActionResult Create()
     {
       return View();
     }
