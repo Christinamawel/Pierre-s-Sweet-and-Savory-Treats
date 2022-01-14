@@ -14,9 +14,11 @@ namespace Pierres.Controllers
   public class FlavorsController : Controller
   {
     private readonly PierresContext _db;
+    private readonly UserManager<ApplicationUser> _userManager;
 
-    public FlavorsController(PierresContext db)
+    public FlavorsController(UserManager<ApplicationUser> userManager, PierresContext db)
     {
+      _userManager = userManager;
       _db = db;
     }
 
@@ -24,6 +26,21 @@ namespace Pierres.Controllers
     {
       List<Flavor> model = _db.Flavors.OrderBy(x => x.Name).ToList();
       return View(model);
+    }
+
+    [Authorize]
+    [HttpPost]
+    public ActionResult Create(string name)
+    {
+      bool alreadyExists = _db.Flavors.Any(x => x.Name == name);
+      if(!alreadyExists)
+      {
+        Flavor newFlavor = new Flavor();
+        newFlavor.Name = name.ToLower();
+        _db.Flavors.Add(newFlavor);
+      }
+      _db.SaveChanges();
+      return RedirectToAction("Index");
     }
   }
 }
