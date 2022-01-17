@@ -40,6 +40,9 @@ input {
 .btn {
   display: block;
   margin: 1em 0;
+  padding: .5em 1em;
+  border: none;
+  border-radius: .5em;
   background-color: rgb(77, 92, 69);
   color: white;
 }
@@ -51,6 +54,7 @@ input {
 
 h1 {
   text-align: center;
+  color:rgb(77, 92, 69);
 }
 
 h2 {
@@ -91,6 +95,8 @@ nav {
 }
 
 #nav-logo {
+  color:rgb(77, 92, 69);
+  font-weight: bold;
   font-size: 1.5rem;
   margin-top: .5em;
   padding-left: 1em;
@@ -117,6 +123,12 @@ nav li a:hover {
   font-weight: bold;
 }
 
+#Home-img {
+  max-width: 40em;
+  display: block;
+  margin: 0 auto;
+}
+
 #Home-div {
   display: flex;
   justify-content: space-between;
@@ -138,4 +150,13 @@ nav li a:hover {
 
 #Home-flavors * {
   color: white;
+}
+
+#Home-flavors-ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#Home-flavors-ul li{
+  min-width: 45%;
 }

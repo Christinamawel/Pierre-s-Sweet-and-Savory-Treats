@@ -3,6 +3,7 @@
 
 <h1>Pierre's Sweet and Savory Treats</h1>
 
+<img id="Home-img" src="~/img/treats.png" />
 <div id="Home-div">
 <div id="Home-treats" class="home-list">
 @if(Model.Count != 0)
@@ -25,7 +26,7 @@ else
 @if(ViewBag.Flavors.Count != 0)
 {
   <h3>See Treats by thier Flavors</h3>
-  <ul>
+  <ul id="Home-flavors-ul">
     @foreach(Flavor flavor in ViewBag.Flavors)
     {
       <li>@Html.ActionLink($"{flavor.Name}", "Details", "Flavors", new { id = flavor.FlavorId })</li>
