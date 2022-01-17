@@ -1,5 +1,22 @@
+@using Pierres.Models;
+@model List<Pierres.Models.Treat>;
+
 <h1>Pierre's Sweet and Savory Treats</h1>
 
-<p>@Html.ActionLink("Log In", "Index", "Account")
-<p>@Html.ActionLink("See Treats", "Index", "Treats")</p>
+@if(Model.Count != 0)
+  {
+    <ul>
+      @foreach(Treat Treat in Model)
+      {
+        <li>@Html.ActionLink($"{Treat.Name}", "Details", new { id = Treat.TreatId }) | @Treat.Rating⭐</li>
+      }
+    </ul>
+  }
+  else
+  {
+    <h3>No Treats have been added yet!</h3>
+  }
+
+<p>@Html.ActionLink("Log In", "Index", "Account")</p>
+<p>@Html.ActionLink("See My Treats", "Index", "Treats")</p>
 <p>@Html.ActionLink("See list of Flavors", "Index", "Flavors")</p>
