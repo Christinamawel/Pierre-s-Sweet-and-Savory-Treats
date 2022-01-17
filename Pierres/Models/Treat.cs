@@ -12,6 +12,7 @@ namespace Pierres.Models
     public int TreatId { get; set; }
     public string Name { get; set; }
     public int Rating { get; set; }
+    public string About { get; set; }
     public virtual ApplicationUser User { get; set; }
     public bool Shared { get; set; }
 

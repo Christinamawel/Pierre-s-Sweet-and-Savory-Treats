@@ -12,6 +12,9 @@
     @Html.LabelFor(model => model.Rating)
     @Html.TextBoxFor(model => model.Rating,  new { @min="0" , @max="5" , type = "number"})
 
+    @Html.LabelFor(model => model.About)
+    @Html.TextBoxFor(model => model.About)
+
     <input type="submit" value="Edit Treat" class="btn btn-default" />
 }
 
