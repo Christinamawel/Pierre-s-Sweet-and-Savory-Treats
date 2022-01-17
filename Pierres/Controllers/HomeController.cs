@@ -27,7 +27,10 @@ namespace Pierres.Controllers
 
     public ActionResult Details(int id)
     {
-      var thisTreat = _db.Treats.FirstOrDefault(Treat => Treat.TreatId == id);
+      var thisTreat = _db.Treats
+          .Include(treat => treat.JoinEntities)
+          .ThenInclude(join => join.Flavor)
+          .FirstOrDefault(Treat => Treat.TreatId == id);
       return View(thisTreat);
     }
   }
