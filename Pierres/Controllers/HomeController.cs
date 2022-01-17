@@ -21,6 +21,7 @@ namespace Pierres.Controllers
     public ActionResult Index()
     {
       List<Treat> model = _db.Treats.Where(entry => entry.Shared == true).OrderByDescending(x => x.Rating).ToList();
+      ViewBag.Flavors = _db.Flavors.ToList();
       return View(model);
     }
 

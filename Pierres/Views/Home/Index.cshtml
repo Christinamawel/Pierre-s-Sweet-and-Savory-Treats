@@ -4,18 +4,33 @@
 <h1>Pierre's Sweet and Savory Treats</h1>
 
 @if(Model.Count != 0)
-  {
-    <ul>
-      @foreach(Treat Treat in Model)
-      {
-        <li>@Html.ActionLink($"{Treat.Name}", "Details", new { id = Treat.TreatId }) | @Treat.Rating⭐</li>
-      }
-    </ul>
-  }
-  else
-  {
-    <h3>No Treats have been added yet!</h3>
-  }
+{
+  <ul>
+    @foreach(Treat Treat in Model)
+    {
+      <li>@Html.ActionLink($"{Treat.Name}", "Details", new { id = Treat.TreatId }) | @Treat.Rating⭐</li>
+    }
+  </ul>
+}
+else
+{
+  <h3>No Treats have been added yet!</h3>
+}
+
+@if(ViewBag.Flavors.Count != 0)
+{
+  <h3>See Treats by thier Flavors</h3>
+  <ul>
+    @foreach(Flavor flavor in ViewBag.Flavors)
+    {
+      <li>@Html.ActionLink($"{flavor.Name}", "Details", "Flavors", new { id = flavor.FlavorId })</li>
+    }
+  </ul>
+}
+else
+{
+  <h3>No Flavors have been added yet!</h3>
+}
 
 <p>@Html.ActionLink("Log In", "Index", "Account")</p>
 <p>@Html.ActionLink("See My Treats", "Index", "Treats")</p>
