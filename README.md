@@ -2,6 +2,8 @@
 
 #### By **Christina Welch**
 
+![Illustration of cupcakes](/Pierres/wwwroot/img/treats.png)
+
 #### _A program that tracks treats and flavors_
 
 ## Technologies Used
